@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->integer('days');
-            $table->integer('description');
-            $table->integer('duration');
-            $table->integer('cost');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->foreignId('assignedId')->constrained('users', 'id')->nullable();
-
+            $table->string('name');
+            $table->string('filde');
+            $table->string('options');
+            $table->unsignedBigInteger('areaId')->nullable(); // Define the nullable foreign key
+            $table->foreign('areaId')->references('id')->on('areas'); // Define the foreign key relationship
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coures');
+        Schema::dropIfExists('courses');
     }
 };

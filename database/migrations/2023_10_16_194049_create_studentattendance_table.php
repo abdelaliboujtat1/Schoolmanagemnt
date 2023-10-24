@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('studentattendances', function (Blueprint $table) {
             $table->id();            
-            $table->foreignId('courseId')->constrained('courses','id')->nullable();
-
+            $table->unsignedBigInteger('classeId')->nullable(); // Define the nullable foreign key
+            $table->foreign('classeId')->references('id')->on('classes'); // Define the foreign key relationship
             $table->date('date');
             $table->boolean('first_hour');
             $table->boolean('second_hour');
             $table->boolean('leave');
-            
+            $table->string('attstatus');
             $table->timestamps();
         });
     }
